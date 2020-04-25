@@ -26,6 +26,46 @@ const getClients = async (req, res) => {
 }
 
 const updateClient = (req, res) => {
+    Promise.resolve()
+        .then(async () => {
+            const { client } = req.body;
+
+            const valid = clientSchema.validate(client || {});
+            if (valid.error)
+                throw new Error(valid.error);
+
+            if (!client.id)
+                throw new Error("Invalid client id");
+
+            const session = getSession();
+
+            try {
+                const address = Object.assign({}, client.address);
+
+                const clientUpdate = Object.assign({}, client);
+                clientUpdate.address = undefined;
+
+                const result = await session.run(
+                    `MATCH (a:Client { id: $client.id })-[:LIVES_IN]->(b: Address)
+                    SET a = $client,
+                    b = $address
+                    RETURN a{.*, address: b{.*}}
+                `,
+                    {
+                        client: clientUpdate,
+                        address
+                    }
+                )
+                res.json({
+                    updated: result.records.length > 0
+                });
+            }
+            finally {
+                session.close();
+            }
+        })
+        .catch(err => epCatch(res, err));
+
 
 }
 

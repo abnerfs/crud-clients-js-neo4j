@@ -7,6 +7,7 @@ const addressSchema = Joi.object({
 });
 
 const clientSchema = Joi.object({
+    id: Joi.string().optional(),
     firstName: Joi.string().required().min(5),
     lastName: Joi.string().required().min(5),
     email: Joi.string().required().min(10),
