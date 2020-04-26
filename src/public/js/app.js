@@ -13,14 +13,35 @@ const app = new Vue({
     },
     methods: {
         deleteClient: (id) => {
-            clientService.deleteClient(id)
-                .then(() => {
-                    loadClients();
-                    $('#modalClients').modal('hide');
-                })
-                .catch(err => {
-                    alert('Error while delegint client: ' + err.message);
-                })
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.value) {
+                    clientService.deleteClient(id)
+                        .then(() => {
+                            loadClients();
+                            $('#modalClients').modal('hide');
+                            Swal.fire(
+                                'Deleted!',
+                                'Client deleted.',
+                                'success'
+                              )
+                        })
+                        .catch(err => {
+                            Swal.fire(
+                                'Error while deleting client', err.message, 'error'
+                            )
+                        })
+                }
+              })
+              
+           
         },
         openClient: (client) => {
             app.editClient = !Boolean(client);
@@ -55,18 +76,19 @@ const app = new Vue({
 
             clientService.saveClient(clientSave)
                 .then((clientSaved) => {
-                    // if(client.id) {
-                    //     let clientIndex = app.clients.findIndex(x => x.id === client.id);
-                    //     if(clientIndex > -1)
-                    //         app.clients[clientIndex] = clientSaved;
-                    // }
-                    // else 
-                    //     app.clients.push(clientSaved);
                     loadClients();
                     $('#modalClients').modal('hide');
+
+                    Swal.fire(
+                        'Done!',
+                        'Client saved.',
+                        'success'
+                      )
                 })
                 .catch(err => {
-                    alert('Error while saving client: ' + err.message);
+                    Swal.fire(
+                        'Error while saving client', err.message, 'error'
+                    )
                 })
         }
     }
@@ -78,7 +100,9 @@ const loadClients = () => {
             app.clients = clients;
         })
         .catch(err => {
-            alert('Error while loading clients: ', err.message);
+            Swal.fire(
+                'Error while loading clients', err.message, 'error'
+            )
         })
 }
 
