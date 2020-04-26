@@ -65,17 +65,18 @@ const app = new Vue({
                 firstName: client.firstName,
                 lastName: client.lastName,
                 email: client.email,
+                phone: client.phone,
                 birthDay: client.birthDay,
                 address: {
                     address: client.address.address,
                     streetNumber: client.address.streetNumber,
                     neighborhood: client.address.neighborhood,
-                    zipcode: client.address.zipcode
+                    zipcode: client.address.zipcode,
                 }
             }
 
             clientService.saveClient(clientSave)
-                .then((clientSaved) => {
+                .then(() => {
                     loadClients();
                     $('#modalClients').modal('hide');
 
