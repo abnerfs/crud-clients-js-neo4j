@@ -6,6 +6,10 @@
   "scripts": {
     "start": "node index"
   },
+  "engines" : {
+    "node" : "12.15.0",
+    "npm" : "6.13.4"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abnerfs/poc-clients-api.git"
