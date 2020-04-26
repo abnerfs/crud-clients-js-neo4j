@@ -14,6 +14,7 @@ const clientSchema = Joi.object({
     email: Joi.string().required().min(10),
     birthDay: Joi.date().required(),
     address: addressSchema.required(),
+    phone: Joi.string().required()
 })
 
 

@@ -81,16 +81,33 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="client-email">Email address</label>
+                                        <input 
+                                            v-model="selectedClient.email"
+                                            :disabled="!editClient"
+                                            type="email"
+                                            class="form-control" 
+                                            id="client-email" 
+                                            placeholder="joao@teste.com">
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="client-email">Email address</label>
-                                <input 
-                                    v-model="selectedClient.email"
-                                    :disabled="!editClient"
-                                    type="email"
-                                    class="form-control" 
-                                    id="client-email" 
-                                    placeholder="Enter email">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="client-email">Phone</label>
+                                        <input 
+                                            v-model="selectedClient.phone"
+                                            :disabled="!editClient"
+                                            type="text"
+                                            class="form-control" 
+                                            id="client-phone" 
+                                            placeholder="">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">
