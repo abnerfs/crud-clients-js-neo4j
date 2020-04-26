@@ -48,7 +48,8 @@ const app = new Vue({
                 address: {
                     address: client.address.address,
                     streetNumber: client.address.streetNumber,
-                    neighborhood: client.address.neighborhood
+                    neighborhood: client.address.neighborhood,
+                    zipcode: client.address.zipcode
                 }
             }
 
