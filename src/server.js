@@ -12,8 +12,14 @@ app.use(bodyParser.json());
 
 const { PORT } = process.env;
 
-const routes = require('./routes');
-app.use('/client', routes.clientRoutes);
+const mainRouter = express.Router();
+
+const routes = require('./api/routes');
+mainRouter.use('/client', routes.clientRouter);
+
+app.use(express.static(__dirname + '/public'));
+
+app.use('/api/v1', mainRouter);
 
 app.listen(PORT, () => {
     console.log(`Server started at port: ${PORT} `)

@@ -1,0 +1,44 @@
+.main-jumbo {
+    text-align: center;
+}
+
+.main-jumbo h1 {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+
+.table-clients {
+    text-align: center;
+    width: 100%;
+}
+
+.name-header {
+    width: 20%;
+}
+.email-header {
+    width: 20%;
+}
+
+.birthday-header {
+    width: 10%;
+}
+
+.address-header {
+    width: 30%;
+}
+
+.btn-new-client {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.row-client {
+    background-color: white;
+}
+
+.row-client:hover {
+    background-color: #EFF0F1;
+    cursor: pointer;
+}

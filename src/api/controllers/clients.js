@@ -19,6 +19,10 @@ const getClients = async (req, res) => {
                 res.json(clients);
             }
             finally {
+
+
+
+                
                 session.close();
             }
         })
