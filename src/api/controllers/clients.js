@@ -20,8 +20,6 @@ const getClients = async (req, res) => {
             }
             finally {
 
-
-
                 
                 session.close();
             }
@@ -60,9 +58,10 @@ const updateClient = (req, res) => {
                         address
                     }
                 )
-                res.json({
-                    updated: result.records.length > 0
-                });
+                if(result.records.length == 0)
+                    throw new Error("Update failed");
+
+                res.json(result.records[0].get(0));
             }
             finally {
                 session.close();
