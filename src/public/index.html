@@ -30,6 +30,7 @@
                     <thead>
                         <th class="name-header"><span class="fa fa-user"></span>&nbsp;&nbsp;Name</th>
                         <th class="email-header"><span class="fa fa-envelope"></span>&nbsp;&nbsp;Email</th>
+                        <th class="phone-header"><span class="fa fa-phone"></span>&nbsp;&nbsp;Phone</th>
                         <th class="birthday-header"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Birthday</th>
                         <th class="address-header"><span class="fa fa-location-arrow"></span>&nbsp;&nbsp;Address</th>
                     </thead>
@@ -38,6 +39,7 @@
                         <tr v-for="client in clients" class="row-client" v-on:click="openClient(client)">
                             <td>{{client.fullName}}</td>
                             <td>{{client.email}}</td>
+                            <td>{{client.phone}}</td>
                             <td>{{client.birthDayParsed}}</td>
                             <td>{{client.parsedAddress}}</td>
                         </tr>
