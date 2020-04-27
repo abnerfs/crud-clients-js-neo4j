@@ -13,6 +13,10 @@
     width: 100%;
 }
 
+.row-max {
+    max-width: 100%;
+}
+
 .name-header {
     width: 20%;
 }

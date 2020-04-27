@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clients UI</title>
+    <title>Clients CRUD</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"">
-    <link rel="stylesheet" href="./css/style.css"">
+    <link rel=" stylesheet" href="./css/style.css"">
 </head>
 
 <body>
@@ -18,37 +18,40 @@
             <h1>Clients CRUD</h1>
         </div>
 
-        <div class="row">
-            <div class="offset-md-8 col-md-2">
-                <button class="btn btn-success btn-new-client" v-on:click="openClient()"><span class="fa fa-plus"></span> CLIENT</button>
+        <div class="row row-max">
+            <div class="offset-md-8 col-md-2 col-sm-12">
+                <button class="btn btn-success btn-new-client" v-on:click="openClient()"><span class="fa fa-plus"></span>&nbsp;&nbsp;CLIENT</button>
             </div>
         </div>
 
-        <div class="row offset-md-2 col-md-8">
-            <table class="table table-responsive table-clients">
-                <thead>
-                    <th class="name-header"><span class="fa fa-user"></span>&nbsp;&nbsp;Name</th>
-                    <th class="email-header"><span class="fa fa-envelope"></span>&nbsp;&nbsp;Email</th>
-                    <th class="birthday-header"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Birthday</th>
-                    <th class="address-header"><span class="fa fa-location-arrow"></span>&nbsp;&nbsp;Address</th>
-                </thead>
+        <div class="row row-max">
+            <div class="offset-md-2 col-md-8 col-xs-12">
+                <table class="table table-responsive table-clients">
+                    <thead>
+                        <th class="name-header"><span class="fa fa-user"></span>&nbsp;&nbsp;Name</th>
+                        <th class="email-header"><span class="fa fa-envelope"></span>&nbsp;&nbsp;Email</th>
+                        <th class="birthday-header"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Birthday</th>
+                        <th class="address-header"><span class="fa fa-location-arrow"></span>&nbsp;&nbsp;Address</th>
+                    </thead>
 
-                <tbody>
-                    <tr v-for="client in clients" class="row-client" v-on:click="openClient(client)">
-                        <td>{{client.fullName}}</td>
-                        <td>{{client.email}}</td>
-                        <td>{{client.birthDayParsed}}</td>
-                        <td>{{client.parsedAddress}}</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <tbody>
+                        <tr v-for="client in clients" class="row-client" v-on:click="openClient(client)">
+                            <td>{{client.fullName}}</td>
+                            <td>{{client.email}}</td>
+                            <td>{{client.birthDayParsed}}</td>
+                            <td>{{client.parsedAddress}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="modal fade" id="modalClients" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" ><span class="fa fa-user-circle"></span> {{ (selectedClient && selectedClient.fullName ? selectedClient.fullName : 'New Client' )}}</h5>
+                        <h5 class="modal-title"><span class="fa fa-user-circle"></span>
+                            {{ (selectedClient && selectedClient.fullName ? selectedClient.fullName : 'New Client' )}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -58,26 +61,18 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="client-firstName"><span class="fa fa-user"></span>&nbsp;&nbsp;First name</label>
-                                        <input 
-                                            v-model="selectedClient.firstName"
-                                            :disabled="!editClient"
-                                            type="text"
-                                            class="form-control" 
-                                            id="client-first-name" 
-                                            placeholder="">
+                                        <label for="client-firstName"><span class="fa fa-user"></span>&nbsp;&nbsp;First
+                                            name</label>
+                                        <input v-model="selectedClient.firstName" :disabled="!editClient" type="text"
+                                            class="form-control" id="client-first-name" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="client-lastName"><span class="fa fa-user"></span>&nbsp;&nbsp;Last name</label>
-                                        <input 
-                                            v-model="selectedClient.lastName"
-                                            :disabled="!editClient"
-                                            type="text"
-                                            class="form-control" 
-                                            id="client-last-name" 
-                                            placeholder="">
+                                        <label for="client-lastName"><span class="fa fa-user"></span>&nbsp;&nbsp;Last
+                                            name</label>
+                                        <input v-model="selectedClient.lastName" :disabled="!editClient" type="text"
+                                            class="form-control" id="client-last-name" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -85,14 +80,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="client-email"><span class="fa fa-envelope"></span>&nbsp;&nbsp;Email</label>
-                                        <input 
-                                            v-model="selectedClient.email"
-                                            :disabled="!editClient"
-                                            type="email"
-                                            class="form-control" 
-                                            id="client-email" 
-                                            placeholder="joao@teste.com">
+                                        <label for="client-email"><span
+                                                class="fa fa-envelope"></span>&nbsp;&nbsp;Email</label>
+                                        <input v-model="selectedClient.email" :disabled="!editClient" type="email"
+                                            class="form-control" id="client-email" placeholder="joao@teste.com">
                                     </div>
 
                                 </div>
@@ -100,84 +91,67 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="client-email"><span class="fa fa-phone"></span>&nbsp;&nbsp;Phone</label>
-                                        <input 
-                                            v-model="selectedClient.phone"
-                                            :disabled="!editClient"
-                                            type="text"
-                                            class="form-control" 
-                                            id="client-phone" 
+                                        <input placeholder="(11) 9 1234-5678" v-model="selectedClient.phone"
+                                            :disabled="!editClient" type="text" class="form-control" id="client-phone"
                                             placeholder="">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="client-lastName"> <span class="fa fa-calendar"></span>&nbsp;&nbsp;Birthday</label>
-                                <input 
-                                    :disabled="!editClient"
-                                    type="date"
-                                    class="form-control" 
-                                    id="client-birthday" 
+                                <label for="client-lastName"> <span
+                                        class="fa fa-calendar"></span>&nbsp;&nbsp;Birthday</label>
+                                <input :disabled="!editClient" type="date" class="form-control" id="client-birthday"
                                     placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label for="address-zip"><span class="fa fa-location-arrow"></span>&nbsp;&nbsp;Zip Code</label>
-                                <input 
-                                    v-model="selectedClient.address.zipcode"
-                                    :disabled="!editClient"
-                                    type="string"
-                                    class="form-control" 
-                                    id="address-zip" 
+                                <label for="address-zip"><span class="fa fa-location-arrow"></span>&nbsp;&nbsp;Zip
+                                    Code</label>
+                                <input placeholder="05867-023" v-model="selectedClient.address.zipcode"
+                                    :disabled="!editClient" type="string" class="form-control" id="address-zip"
                                     placeholder="">
                             </div>
 
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label for="address"><span class="fa fa-location-arrow"></span>&nbsp;&nbsp;Address</label>
-                                        <input 
-                                            v-model="selectedClient.address.address"
-                                            :disabled="!editClient"
-                                            type="string"
-                                            class="form-control" 
-                                            id="address" 
-                                            placeholder="">
+                                        <label for="address"><span
+                                                class="fa fa-location-arrow"></span>&nbsp;&nbsp;Address</label>
+                                        <input v-model="selectedClient.address.address" :disabled="!editClient"
+                                            type="string" class="form-control" id="address" placeholder="">
                                     </div>
-                                </div>    
+                                </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="address-number"><span class="fa fa-location-arrow"></span>&nbsp;&nbsp;Street Number</label>
-                                        <input 
-                                            v-model="selectedClient.address.streetNumber"
-                                            :disabled="!editClient"
-                                            type="string"
-                                            class="form-control" 
-                                            id="address-number" 
-                                            placeholder="">
+                                        <label for="address-number"><span
+                                                class="fa fa-location-arrow"></span>&nbsp;&nbsp;Street Number</label>
+                                        <input v-model="selectedClient.address.streetNumber" :disabled="!editClient"
+                                            type="string" class="form-control" id="address-number" placeholder="">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="address-neighborhood"><span class="fa fa-location-arrow"></span>&nbsp;&nbsp;Neighborhood</label>
-                                <input 
-                                    v-model="selectedClient.address.neighborhood"
-                                    :disabled="!editClient"
-                                    type="string"
-                                    class="form-control" 
-                                    id="address-neighborhood" 
-                                    placeholder="">
+                                <label for="address-neighborhood"><span
+                                        class="fa fa-location-arrow"></span>&nbsp;&nbsp;Neighborhood</label>
+                                <input v-model="selectedClient.address.neighborhood" :disabled="!editClient" type="string"
+                                    class="form-control" id="address-neighborhood" placeholder="">
                             </div>
 
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="fa fa-times"></span>&nbsp;&nbsp;Close</button>
-                        
-                        <button v-on:click="editClient = true" v-if="!editClient" type="button" class="btn btn-primary"><span class="fa fa-pencil-alt"></span>&nbsp;&nbsp;Edit</button>
-                        <button v-if="editClient && selectedClient.id" v-on:click="deleteClient(selectedClient.id)" type="button" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;&nbsp;Delete</button>
-                        <button v-if="editClient" v-on:click="saveClient(selectedClient)" type="button" class="btn btn-primary"> <span class="fa fa-save"></span>&nbsp;&nbsp;Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><span
+                                class="fa fa-times"></span>&nbsp;&nbsp;Close</button>
+
+                        <button v-on:click="editClient = true" v-if="!editClient" type="button"
+                            class="btn btn-primary"><span class="fa fa-pencil-alt"></span>&nbsp;&nbsp;Edit</button>
+                        <button v-if="editClient && selectedClient.id" v-on:click="deleteClient(selectedClient.id)"
+                            type="button" class="btn btn-danger"><span
+                                class="fa fa-trash"></span>&nbsp;&nbsp;Delete</button>
+                        <button v-if="editClient" v-on:click="saveClient(selectedClient)" type="button"
+                            class="btn btn-primary"> <span class="fa fa-save"></span>&nbsp;&nbsp;Save</button>
                     </div>
                 </div>
             </div>
@@ -195,17 +169,14 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="../../node_modules/@fortawesome/fontawesome-free/js/fontawesome.min.js"></script>
-    
+    <script src="./js/lib/jquery.mask.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="./js/services/util.js"></script>
+    <script src="./js/services/clients.js"></script>
+    <script src="./js/app.js"></script>
 
-        <script src="./js/services/util.js"></script>
-        <script src="./js/services/clients.js"></script>
-        <script src="./js/app.js"></script>
-
-
-
-    </body>
+</body>
 
 </html>

@@ -88,7 +88,7 @@ const insertClient = async (req, res) => {
 
             try {
                 const result = await session.run(
-                    `CREATE (a:Client { id: $id, firstName: $firstName, lastName: $lastName, email: $email, birthDay: $birthDay })-[:LIVES_IN]-> (b: Address $address ) 
+                    `CREATE (a:Client { id: $id, firstName: $firstName, lastName: $lastName, email: $email, birthDay: $birthDay, phone: $phone })-[:LIVES_IN]-> (b: Address $address ) 
                     RETURN a{.*, address: b{.*}}
                     `,
                     client
