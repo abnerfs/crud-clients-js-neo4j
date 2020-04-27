@@ -34,7 +34,7 @@ const updateClient = (req, res) => {
 
             const valid = clientSchema.validate(client || {});
             if (valid.error)
-                throw new Error(valid.error);
+                throw new Error(valid.error.message);
 
             if (!client.id)
                 throw new Error("Invalid client id");
@@ -79,7 +79,7 @@ const insertClient = async (req, res) => {
 
             const valid = clientSchema.validate(client || {});
             if (valid.error) {
-                throw new Error(valid.error);
+                throw new Error(valid.error.message);
             }
 
             client.id = randomid(30);
