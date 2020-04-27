@@ -47,18 +47,29 @@ const app = new Vue({
             app.editClient = !Boolean(client);
             app.selectedClient = Object.assign({}, client || { address : { } });
 
+            $('#client-phone').mask('(00) 0 0000-0000');
+            $('#address-zip').mask('00000-000');
 
             $('#modalClients').modal({
                 show: true,
-                backdrop: 'static'
+                backdrop: 'static',
+                keyboard: true
             })
 
-            if(client)
-                document.getElementById('client-birthday')
-                    .valueAsDate = app.selectedClient.birthDay || null; 
+            if(client) {
+                const clientBirthday = document.getElementById('client-birthday');
+                const dateValue = app.selectedClient.birthDay || null;
+                if(dateValue)
+                    dateValue.setDate(dateValue.getDate() - 1);
+                else
+                    clientBirthday.value = null;
+
+                clientBirthday.valueAsDate = dateValue;
+            }
         },
         saveClient: (client) => {
             client.birthDay = document.getElementById('client-birthday').valueAsDate;
+            client.birthDay.setDate(client.birthDay.getDate() + 1);
 
             const clientSave = {
                 id: client.id,
@@ -66,7 +77,7 @@ const app = new Vue({
                 lastName: client.lastName,
                 email: client.email,
                 phone: client.phone,
-                birthDay: client.birthDay,
+                birthDay: client.birthDay.toISOString(),
                 address: {
                     address: client.address.address,
                     streetNumber: client.address.streetNumber,
