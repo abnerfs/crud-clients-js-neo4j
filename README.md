@@ -21,5 +21,3 @@ npm install
 node index
 ```
 
-# Live DEMO
-- Projeto publicado para demonstração em: https://abnerfs-clients-crud.herokuapp.com/ (Disponível até 28/04/2020 devido ao limite de tempo do test drive do Neo4j https://neo4j.com/neo4j-for-google-cloud/) 
